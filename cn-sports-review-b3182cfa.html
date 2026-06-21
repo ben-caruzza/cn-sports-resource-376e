@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>体彩 · 运动与生活的另一种关联</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background: #f7fafc;
+            color: #1a2a3a;
+            line-height: 1.6;
+            padding: 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page {
+            max-width: 1080px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* ===== 主视觉 Hero ===== */
+        .hero {
+            background: linear-gradient(145deg, #e0f2f1 0%, #b2dfdb 100%);
+            border-radius: 2rem 2rem 2rem 2rem;
+            padding: 2.5rem 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 12px 24px -8px rgba(0, 80, 70, 0.08);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.8rem;
+        }
+
+        .hero-text {
+            flex: 1 1 260px;
+        }
+
+        .hero h1 {
+            font-size: 2.1rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #004d40;
+            line-height: 1.25;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero h1 span {
+            background: #004d40;
+            color: #e0f2f1;
+            display: inline-block;
+            padding: 0 0.4rem;
+            border-radius: 0.3rem;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: #1e3b37;
+            max-width: 480px;
+            margin-top: 0.4rem;
+        }
+
+        .hero-visual {
+            flex: 0 0 auto;
+            width: 110px;
+            height: 110px;
+            background: #ffffffbb;
+            backdrop-filter: blur(4px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.8rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            color: #00695c;
+            border: 2px solid #80cbc4;
+        }
+
+        /* ===== 信息卡片区 ===== */
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 550;
+            color: #004d40;
+            margin: 2.2rem 0 1.2rem 0;
+            padding-left: 0.3rem;
+            border-left: 6px solid #26a69a;
+            padding-left: 0.9rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.6rem 1.2rem;
+            box-shadow: 0 6px 14px rgba(0, 80, 70, 0.04);
+            transition: 0.18s ease;
+            border: 1px solid #e0f2f1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 22px rgba(0, 80, 70, 0.07);
+            border-color: #b2dfdb;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 0.65rem;
+            background: #e0f2f1;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1rem;
+            color: #00695c;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 550;
+            color: #004d40;
+            margin-bottom: 0.3rem;
+        }
+
+        .card p {
+            color: #2d4a43;
+            font-size: 0.95rem;
+            margin-top: 0.2rem;
+            flex: 1;
+        }
+
+        .card .tag {
+            display: inline-block;
+            margin-top: 0.8rem;
+            font-size: 0.75rem;
+            color: #00796b;
+            background: #e0f2f1;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            align-self: flex-start;
+            font-weight: 450;
+        }
+
+        /* 适合人群卡片特殊处理 */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .audience-item {
+            background: white;
+            border-radius: 1.2rem;
+            padding: 1.2rem 0.9rem;
+            border: 1px solid #d0e8e3;
+            text-align: center;
+            transition: 0.15s;
+        }
+
+        .audience-item .icon {
+            font-size: 1.6rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .audience-item .label {
+            font-weight: 500;
+            color: #004d40;
+            font-size: 0.95rem;
+        }
+
+        .audience-item .desc {
+            font-size: 0.82rem;
+            color: #37665b;
+            margin-top: 0.2rem;
+        }
+
+        /* ===== 自然链接段落 ===== */
+        .link-block {
+            background: #e8f5e9;
+            background: linear-gradient(135deg, #e0f2f1 0%, #d7eee8 100%);
+            border-radius: 1.8rem;
+            padding: 1.8rem 2rem;
+            margin: 2rem 0 1.8rem 0;
+            border: 1px solid #b2dfdb;
+        }
+
+        .link-block p {
+            font-size: 1.02rem;
+            color: #1d3b35;
+            max-width: 700px;
+        }
+
+        .link-block a {
+            color: #004d40;
+            background: transparent;
+            text-decoration: underline;
+            text-underline-offset: 0.2rem;
+            text-decoration-color: #4db6ac;
+            font-weight: 550;
+            transition: 0.1s;
+        }
+
+        .link-block a:hover {
+            color: #002b23;
+            text-decoration-color: #00695c;
+        }
+
+        /* ===== 提示 / FAQ 摘要 ===== */
+        .faq-mini {
+            background: #ffffffd9;
+            backdrop-filter: blur(2px);
+            border-radius: 1.5rem;
+            padding: 1.5rem 1.8rem;
+            margin: 1.8rem 0 0.8rem 0;
+            border-left: 6px solid #26a69a;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        .faq-mini h4 {
+            font-size: 1.1rem;
+            font-weight: 550;
+            color: #004d40;
+            margin-bottom: 0.6rem;
+        }
+
+        .faq-mini .q-item {
+            margin-bottom: 0.6rem;
+        }
+
+        .faq-mini .q {
+            font-weight: 500;
+            color: #075e4e;
+        }
+
+        .faq-mini .a {
+            color: #2d4a43;
+            font-size: 0.92rem;
+            margin-left: 0.5rem;
+        }
+
+        .faq-mini .a a {
+            color: #00695c;
+            text-decoration: underline;
+            text-underline-offset: 0.15rem;
+        }
+
+        /* ===== Footer ===== */
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #6b8f86;
+            border-top: 1px solid #c8e0da;
+            padding-top: 1.2rem;
+            letter-spacing: 0.2px;
+        }
+
+        /* ===== 响应式细节 ===== */
+        @media (max-width: 520px) {
+            body {
+                padding: 0.8rem;
+            }
+            .hero {
+                padding: 1.8rem 1.2rem;
+                border-radius: 1.5rem;
+            }
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            .hero-visual {
+                width: 75px;
+                height: 75px;
+                font-size: 2.6rem;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            .audience-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .section-title {
+                font-size: 1.25rem;
+                margin-top: 1.8rem;
+            }
+            .link-block {
+                padding: 1.3rem 1.2rem;
+            }
+            .faq-mini {
+                padding: 1.2rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .audience-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-visual {
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <!-- 主视觉 -->
+        <header class="hero">
+            <div class="hero-text">
+                <h1>体彩 · <span>运动</span>的余味</h1>
+                <p>不是所有悬念都需要结局，有些数字只负责陪伴一段注视。这里是一张关于节奏与选择的卡片簿。</p>
+            </div>
+            <div class="hero-visual">
+                &#127922;
+            </div>
+        </header>
+
+        <!-- 用途卡片 -->
+        <h2 class="section-title">日常可以如何靠近</h2>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">&#127939;</div>
+                <h3>节奏标记</h3>
+                <p>比赛日、训练间隙，一个比分之外的标点。不需要理由，只是增添一层观看的纹理。</p>
+                <span class="tag">观赛搭配</span>
+            </div>
+            <div class="card">
+                <div class="card-icon">&#128202;</div>
+                <h3>数字练习</h3>
+                <p>基于赛果的简单推演，不依赖复杂模型。适合喜欢用概率思考日常的人。</p>
+                <span class="tag">思维游戏</span>
+            </div>
+            <div class="card">
+                <div class="card-icon">&#9741;</div>
+                <h3>轻社交话题</h3>
+                <p>与朋友聊起某场联赛时，多一个中性的切面。不喧宾夺主，却能延续对话。</p>
+                <span class="tag">闲聊锚点</span>
+            </div>
+            <div class="card">
+                <div class="card-icon">&#127910;</div>
+                <h3>专注练习</h3>
+                <p>选择一场比赛，投入有限的注意力。过程本身比结果更值得体验。</p>
+                <span class="tag">正念观察</span>
+            </div>
+        </div>
+
+        <!-- 适合人群 + 特点混合网格 -->
+        <h2 class="section-title">这些状态可能适合</h2>
+        <div class="audience-grid">
+            <div class="audience-item">
+                <div class="icon">&#127908;</div>
+                <div class="label">赛事爱好者</div>
+                <div class="desc">习惯于周末看球，想多一层参与感</div>
+            </div>
+            <div class="audience-item">
+                <div class="icon">&#128214;</div>
+                <div class="label">数字敏感者</div>
+                <div class="desc">对赔率、统计有天然好奇</div>
+            </div>
+            <div class="audience-item">
+                <div class="icon">&#127917;</div>
+                <div class="label">轻度社交玩家</div>
+                <div class="desc">朋友局里聊起体彩不陌生</div>
+            </div>
+            <div class="audience-item">
+                <div class="icon">&#128736;</div>
+                <div class="label">系统思考者</div>
+                <div class="desc">喜欢在不确定中寻找模式</div>
+            </div>
+            <div class="audience-item">
+                <div class="icon">&#127774;</div>
+                <div class="label">节奏追求者</div>
+                <div class="desc">赛事结果作为生活节拍器</div>
+            </div>
+        </div>
+
+        <!-- 自然链接段落（嵌入体彩） -->
+        <div class="link-block">
+            <p>
+                很多人第一次接触体育竞猜，是从一场毫无计划的球赛开始的。慢慢发现，决定投注与否的依据，往往不是数据，而是一种观看习惯。如果你想了解更多关于规则、玩法和赛事选择的完整信息，可以看看 <a href="https://cn-sports-lottery.com">体彩</a> 这个站点上整理的内容，它不负责预测，但提供了清晰的背景。
+            </p>
+        </div>
+
+        <!-- FAQ 摘要 + 二次链接 -->
+        <div class="faq-mini">
+            <h4>&#10067; 简短疑问 · 摘要</h4>
+            <div class="q-item">
+                <span class="q">问：体彩通常适用于哪些运动？</span>
+                <div class="a">足球、篮球、网球以及部分综合赛事。具体项目可在 <a href="https://cn-sports-lottery.com">体彩</a> 的赛事列表中找到。</div>
+            </div>
+            <div class="q-item">
+                <span class="q">问：需要懂很多体育知识吗？</span>
+                <div class="a">基本了解赛制即可，很多参与者是从零开始积累的。信息页面上有简单的入门解释。</div>
+            </div>
+            <div class="q-item">
+                <span class="q">问：是否有策略参考？</span>
+                <div class="a">更多是原则性提示，例如分散选择、控制频率。具体判断还是依靠个人。</div>
+            </div>
+        </div>
+
+        <!-- 一个小提示区块 (克制) -->
+        <div style="background: #f1f8f6; border-radius: 1.2rem; padding: 1.2rem 1.6rem; margin-top: 1.5rem; border: 1px solid #c8e0da;">
+            <p style="font-size: 0.9rem; color: #2b5b50;">&#128161; 体育竞猜本身是一种文化现象，保持节奏比追逐结果更重要。每次打开 <a href="https://cn-sports-lottery.com">体彩</a> 时，不妨先问自己：今天是因为好奇，还是因为习惯？</p>
+        </div>
+
+        <div class="footer-note">
+            信息卡片式介绍 · 蓝绿色网格 · 仅供了解
+        </div>
+
+    </div>
+</body>
+</html>
