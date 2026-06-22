@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>bb体育 · 信息卡片介绍</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f9fafc;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #1e293b;
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 32px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.02);
+      padding: 2.5rem 2rem 3rem;
+    }
+
+    /* 主视觉区 ———— 用卡片承托 */
+    .hero-card {
+      background: #f0f4fe;
+      border-radius: 24px;
+      padding: 2rem 1.8rem;
+      margin-bottom: 2.8rem;
+      text-align: center;
+    }
+
+    .hero-card h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #0f172a;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-card .sub {
+      font-size: 1rem;
+      color: #475569;
+      border-bottom: 2px solid rgba(37, 99, 235, 0.2);
+      display: inline-block;
+      padding-bottom: 0.3rem;
+    }
+
+    .hero-card .intro-text {
+      margin-top: 1.2rem;
+      font-size: 1rem;
+      color: #334155;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* 通用卡片网格 */
+    .card-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+      margin: 2.2rem 0 2.5rem;
+    }
+
+    .info-card {
+      background: #ffffff;
+      border: 1px solid #e9edf4;
+      border-radius: 20px;
+      padding: 1.6rem 1.8rem;
+      transition: box-shadow 0.2s;
+    }
+
+    .info-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+    }
+
+    .info-card h2 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #0f172a;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .info-card h2::before {
+      content: "—";
+      color: #3b82f6;
+      font-weight: 300;
+      margin-right: 0.2rem;
+    }
+
+    .info-card p, .info-card li {
+      font-size: 0.98rem;
+      color: #334155;
+    }
+
+    .info-card ul {
+      list-style: none;
+      padding-left: 0.2rem;
+    }
+
+    .info-card li {
+      padding: 0.3rem 0;
+      position: relative;
+      padding-left: 1.2rem;
+    }
+
+    .info-card li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      color: #3b82f6;
+      font-weight: 700;
+    }
+
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.8rem;
+      margin-top: 0.6rem;
+    }
+
+    .tag {
+      background: #f1f5f9;
+      padding: 0.2rem 0.9rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      color: #1e293b;
+    }
+
+    /* 自然链接段落 */
+    .link-paragraph {
+      background: #f8fafc;
+      border-radius: 20px;
+      padding: 1.6rem 1.8rem;
+      margin: 2.2rem 0 1.8rem;
+      border-left: 4px solid #3b82f6;
+    }
+
+    .link-paragraph p {
+      margin-bottom: 0.6rem;
+    }
+
+    .link-paragraph a {
+      color: #1d4ed8;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+
+    .link-paragraph a:hover {
+      border-bottom-color: #1d4ed8;
+    }
+
+    .faq-mini {
+      margin-top: 2.2rem;
+    }
+
+    .faq-mini details {
+      border-top: 1px solid #e2e8f0;
+      padding: 0.9rem 0;
+    }
+
+    .faq-mini details:last-of-type {
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .faq-mini summary {
+      font-weight: 500;
+      cursor: pointer;
+      color: #0f172a;
+      font-size: 1rem;
+      padding: 0.2rem 0;
+    }
+
+    .faq-mini summary::-webkit-details-marker {
+      color: #3b82f6;
+    }
+
+    .faq-mini details p {
+      margin-top: 0.6rem;
+      padding-left: 0.3rem;
+      color: #475569;
+      font-size: 0.95rem;
+    }
+
+    .footer-note {
+      margin-top: 2.8rem;
+      font-size: 0.85rem;
+      color: #64748b;
+      text-align: center;
+      border-top: 1px solid #ecf1f7;
+      padding-top: 1.5rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 500px) {
+      .page {
+        padding: 1.6rem 1rem;
+      }
+      .hero-card h1 {
+        font-size: 1.8rem;
+      }
+      .info-card {
+        padding: 1.3rem 1.2rem;
+      }
+      .link-paragraph {
+        padding: 1.2rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- 主视觉卡片 -->
+    <div class="hero-card">
+      <h1>bb体育</h1>
+      <span class="sub">信息卡片 · 日常对照与延伸阅读</span>
+      <p class="intro-text">
+        围绕平台的使用场景、人群特征与内容线索，整理成简明卡片，方便随时查询与参照。
+      </p>
+    </div>
+
+    <!-- 用途卡片 -->
+    <div class="card-grid">
+      <div class="info-card">
+        <h2>日常用途</h2>
+        <ul>
+          <li>赛事动态速览与数据对照</li>
+          <li>项目分类浏览：足球、篮球、网球及更多</li>
+          <li>赛前信息整合与赛后统计延伸</li>
+          <li>多终端同步，适合碎片时间翻阅</li>
+        </ul>
+        <div class="tag-group">
+          <span class="tag">实时对照</span>
+          <span class="tag">分类浏览</span>
+          <span class="tag">数据延伸</span>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h2>适合人群</h2>
+        <ul>
+          <li>日常关注赛事动态的爱好者</li>
+          <li>习惯横向对比数据的理性观众</li>
+          <li>需要快速查阅项目信息的泛体育用户</li>
+          <li>对内容延伸阅读有需求的读者</li>
+        </ul>
+        <div class="tag-group">
+          <span class="tag">爱好者</span>
+          <span class="tag">数据向</span>
+          <span class="tag">泛读者</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 自然链接段落 —— 强调日常查询与延伸阅读 -->
+    <div class="link-paragraph">
+      <p>在整理赛事信息或做简单对照时，<a href="https://webs-bbsport.com">bb体育</a> 提供了相对集中的项目分类与数据陈列方式。页面结构偏向清单式呈现，适合先快速浏览，再根据个人兴趣做进一步阅读。</p>
+      <p>无论是赛前了解基础对阵，还是赛后回顾统计，都可以将其作为一个信息起点。延伸阅读时，建议结合多方信源交叉参照。</p>
+    </div>
+
+    <!-- 补充卡片：场景化提示 -->
+    <div class="info-card" style="margin-bottom: 0.4rem;">
+      <h2>使用场景参考</h2>
+      <ul>
+        <li><strong>日常翻阅</strong> — 利用碎片时间浏览项目分类，保持信息节奏</li>
+        <li><strong>快速对照</strong> — 同时打开多场比赛或队伍页面进行横向比较</li>
+        <li><strong>内容延伸</strong> — 从某一赛事条目出发，查找相关背景或历史数据</li>
+      </ul>
+    </div>
+
+    <!-- FAQ 摘要（简约折叠） -->
+    <div class="faq-mini">
+      <details>
+        <summary>页面信息更新频率如何？</summary>
+        <p>平台内容跟随赛事节奏动态刷新，具体时效以页面实际展示为准。建议在重要赛段前后自行核对最新状态。</p>
+      </details>
+      <details>
+        <summary>是否涵盖所有体育项目？</summary>
+        <p>主要覆盖主流团队项目及部分个人项目，具体范围可在浏览分类时确认。未覆盖的项目可通过其他专业信源补充。</p>
+      </details>
+    </div>
+
+    <div class="footer-note">
+      本页为信息整理卡片 · 内容仅供日常参考
+    </div>
+
+  </div>
+</body>
+</html>
